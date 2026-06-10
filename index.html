@@ -50,6 +50,15 @@
   }
   </script>
 
+  <!-- Google Ads Global Site Tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18201267460"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18201267460');
+  </script>
+
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -224,27 +233,27 @@
         <p class="services-intro">Each service is tailored to where you are in your garden journey — whether you're starting from scratch or looking to refresh an existing space across Wellington and the wider region.</p>
       </div>
       <div class="services-list reveal">
-        <div class="service-item">
+        <div class="service-item" id="full-garden-design">
           <h3 class="service-name">Full Garden Design</h3>
           <p class="service-desc">Complete design from site analysis through to detailed planting plans and construction documentation.</p>
         </div>
-        <div class="service-item">
+        <div class="service-item" id="planting-design">
           <h3 class="service-name">Planting Design</h3>
           <p class="service-desc">Curated planting schemes that balance seasonal interest, low maintenance, and a cohesive aesthetic.</p>
         </div>
-        <div class="service-item">
+        <div class="service-item" id="concept-consultation">
           <h3 class="service-name">Concept Consultation</h3>
           <p class="service-desc">A focused session to explore possibilities and give you a clear direction to move forward with confidence.</p>
         </div>
-        <div class="service-item">
+        <div class="service-item" id="hard-landscaping">
           <h3 class="service-name">Hard Landscaping Design</h3>
           <p class="service-desc">Design of terraces, pathways, and structural elements — working with trusted contractors to bring it to life.</p>
         </div>
-        <div class="service-item">
+        <div class="service-item" id="garden-review">
           <h3 class="service-name">Garden Review</h3>
           <p class="service-desc">A professional assessment of an existing garden with practical recommendations you can act on right away.</p>
         </div>
-        <div class="service-item">
+        <div class="service-item" id="project-management">
           <h3 class="service-name">Project Management</h3>
           <p class="service-desc">On-site coordination to ensure your design is executed to the highest standard, exactly as envisioned.</p>
         </div>
@@ -277,7 +286,7 @@
           </div>
         </div>
       </div>
-      <form class="contact-form reveal" name="enquiry" method="POST" data-netlify="true">
+      <form class="contact-form reveal" name="enquiry" method="POST" data-netlify="true" action="/thank-you">
         <div class="form-row">
           <div class="form-group">
             <label for="fname">First Name</label>
@@ -297,7 +306,7 @@
           <label for="message">Tell me about your project</label>
           <textarea id="message" name="message" placeholder="Describe your space and what you're hoping to achieve…"></textarea>
         </div>
-        <button class="btn btn-light" type="submit">Send Enquiry</button>
+        <button class="btn btn-light" type="submit" onclick="gtag_report_conversion()">Send Enquiry</button>
       </form>
     </div>
   </section>
@@ -308,6 +317,13 @@
   </footer>
 
   <script>
+    // Google Ads conversion tracking — replace AW-XXXXXXXXXX/XXXXXXXXXX with your conversion action ID
+    function gtag_report_conversion() {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'conversion', { 'send_to': 'AW-XXXXXXXXXX/XXXXXXXXXX' });
+      }
+    }
+
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
     }, { threshold: 0.1 });
